@@ -12,18 +12,18 @@ import (
 
 // List of commands that are available
 var Commands = []cli.Command{
-	CommandSend,
+	CommandAddChangeEvent,
 }
 
 // Command responsible for sending a change event to changelog.
-var CommandSend = cli.Command{
+var CommandAddChangeEvent = cli.Command{
 	Name:        "add",
-	Usage:       "changelog add [change parameters]",
-	Description: `Command to add a new change (event) to changelog.`,
-	Action:      SendEvent,
+	Usage:       "changelog add [change event parameters]",
+	Description: `Command to add a new change (event) to changelog. See help for the available parameters`,
+	Action:      handleAddChangeEvent,
 }
 
 // Function that send the event
-func SendEvent(c *cli.Context) {
+func handleAddChangeEvent(c *cli.Context) {
 	fmt.Print("Sending change event to changelog.")
 }

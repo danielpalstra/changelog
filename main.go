@@ -15,22 +15,6 @@ import (
 // ES 1.6
 // Kibana 4.0.2
 
-// Event is a structure used for serializing/deserializing data in Elasticsearch.
-type Event struct {
-	Created     time.Time `json:"created"`
-	Category    string    `json:"category"`
-	Severity    string    `json:"severity"`
-	User        string    `json:"user,omitempty"`
-	Message     string    `json:"message"`
-	Project     string    `json:"project,omitempty"`
-	Action      string    `json:"action,omitempty"`
-	Hostname    string    `json:"hostname,omitempty"`
-	Environment string    `json:"environment,omitempty"`
-	Origin      string    `json:"origin,omitempty"`
-	Tags        []string  `json:"tags,omitempty"`
-	// Suggest  *elastic.SuggestField `json:"suggest_field,omitempty"`
-}
-
 // machine=default; ssh -i ~/.docker/machine/machines/$machine/id_rsa docker@$(docker-machine ip $machine) -L 9200:localhost:9200
 
 func main() {
@@ -49,6 +33,7 @@ func main() {
 
 func changeEvent() {
 
+	// Define index name
 	index := strings.Join([]string{"changelog-", time.Now().Format("2006.01.02")}, "")
 
 	fmt.Print(index)
