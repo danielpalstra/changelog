@@ -1,12 +1,14 @@
 package main
 
 import (
+	"os"
 	"time"
 	//"encoding/json"
 	// "net/http"
 	"fmt"
 	"strings"
 
+	"github.com/codegangsta/cli"
 	"gopkg.in/olivere/elastic.v3"
 )
 
@@ -32,6 +34,20 @@ type Event struct {
 // machine=default; ssh -i ~/.docker/machine/machines/$machine/id_rsa docker@$(docker-machine ip $machine) -L 9200:localhost:9200
 
 func main() {
+
+	app := cli.NewApp()
+	app.Name = "changelog"
+	app.Version = "0.1.0"
+	app.Usage = "changelog [action] [arguments]"
+	app.Author = "Daniel Palstra"
+	app.Email = "daniel.palstra@kvk.nl"
+	app.Commands = Commands
+	app.Flags = Flags
+	app.Run(os.Args)
+
+}
+
+func changeEvent() {
 
 	index := strings.Join([]string{"changelog-", time.Now().Format("2006.01.02")}, "")
 
