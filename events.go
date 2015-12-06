@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strings"
 	"time"
 
@@ -15,8 +16,8 @@ type Event struct {
 	Timestamp   time.Time             `json:"@timestamp"`
 	Category    string                `json:"category"`
 	Severity    string                `json:"severity"`
-	User        string                `json:"user,omitempty"`
 	Message     string                `json:"message"`
+	User        string                `json:"user,omitempty"`
 	Project     string                `json:"project,omitempty"`
 	Action      string                `json:"action,omitempty"`
 	Hostname    string                `json:"hostname,omitempty"`
@@ -27,7 +28,7 @@ type Event struct {
 }
 
 func getIndex() (i string) {
-	// TODO make configurable
+	// TODO make index configurable
 	i = strings.Join([]string{"changelog-", time.Now().Format("2006.01.02")}, "")
 	return
 }
@@ -38,6 +39,7 @@ func changeEvent(url string, event Event) {
 
 	// Set timestamp for event
 	event.Timestamp = time.Now()
+	event.Origin, _ = os.Hostname()
 
 	// Define index name
 	index := getIndex()
@@ -67,16 +69,15 @@ func changeEvent(url string, event Event) {
 	}
 
 	// Index a changelog event (using JSON serialization)
-	put1, err := client.Index().
+	put, err := client.Index().
 		Index(index).
 		Type("event").
-		Id("1").
 		BodyJson(event).
 		Do()
 	if err != nil {
 		// Handle error
 		panic(err)
 	}
-	fmt.Printf("Send changelog event %s to index %s \n", put1.Id, put1.Index)
+	fmt.Printf("Send changelog event %s to index %s \n", put.Id, put.Index)
 
 }

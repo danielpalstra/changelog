@@ -8,11 +8,6 @@ import (
 	"github.com/codegangsta/cli"
 )
 
-// ES 1.6
-// Kibana 4.0.2
-
-// machine=default; ssh -i ~/.docker/machine/machines/$machine/id_rsa docker@$(docker-machine ip $machine) -L 9200:localhost:9200
-
 func main() {
 
 	app := cli.NewApp()

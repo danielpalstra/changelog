@@ -18,7 +18,7 @@ var Commands = []cli.Command{
 // CommandAddChangeEvent - Command responsible for sending a change event to changelog.
 var CommandAddChangeEvent = cli.Command{
 	Name:        "add",
-	Usage:       "changelog add [change event parameters]",
+	Usage:       "changelog add [options]",
 	Description: `Command to add a new change (event) to changelog. See help for the available parameters`,
 	Action:      addChangeEvent,
 	Flags:       Flags,
@@ -38,7 +38,7 @@ func addChangeEvent(c *cli.Context) {
 func checkArguments(c *cli.Context) (err error) {
 
 	if c.String("message") == "" {
-		err = errors.New("message argument cannot be empty")
+		err = errors.New("message option cannot be empty")
 	}
 
 	return err

@@ -51,7 +51,7 @@ var flagUser = cli.StringFlag{
 
 var flagMessage = cli.StringFlag{
 	Name:        "message, m",
-	Usage:       "message describing the change",
+	Usage:       "REQUIRED - message describing the change",
 	Destination: &event.Message,
 }
 
