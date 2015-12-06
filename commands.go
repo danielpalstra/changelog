@@ -5,25 +5,41 @@
 package main
 
 import (
-	"fmt"
+	"errors"
 
 	"github.com/codegangsta/cli"
 )
 
-// List of commands that are available
+// Commands -  List of commands that are available
 var Commands = []cli.Command{
 	CommandAddChangeEvent,
 }
 
-// Command responsible for sending a change event to changelog.
+// CommandAddChangeEvent - Command responsible for sending a change event to changelog.
 var CommandAddChangeEvent = cli.Command{
 	Name:        "add",
 	Usage:       "changelog add [change event parameters]",
 	Description: `Command to add a new change (event) to changelog. See help for the available parameters`,
-	Action:      handleAddChangeEvent,
+	Action:      addChangeEvent,
+	Flags:       Flags,
 }
 
 // Function that send the event
-func handleAddChangeEvent(c *cli.Context) {
-	fmt.Print("Sending change event to changelog.")
+func addChangeEvent(c *cli.Context) {
+
+	err := checkArguments(c)
+	if err != nil {
+		panic(err)
+	}
+	changeEvent(c.String("url"), event)
+
+}
+
+func checkArguments(c *cli.Context) (err error) {
+
+	if c.String("message") == "" {
+		err = errors.New("message argument cannot be empty")
+	}
+
+	return err
 }

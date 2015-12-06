@@ -8,8 +8,9 @@ import "github.com/codegangsta/cli"
 
 var event Event
 
-// List of available flags
+// Flags contains a list of available arguments to use
 var Flags = []cli.Flag{
+	flagURL,
 	flagCategory,
 	flagSeverity,
 	flagUser,
@@ -20,9 +21,17 @@ var Flags = []cli.Flag{
 	flagHostname,
 }
 
+var flagURL = cli.StringFlag{
+	Name:   "url",
+	Value:  "http://localhost:9200",
+	Usage:  "URL of the ElasticSearch server",
+	EnvVar: "ES_URL",
+}
+
 var flagCategory = cli.StringFlag{
 	Name:        "category, c",
 	Usage:       "category for the change event",
+	Value:       "misc",
 	Destination: &event.Category,
 }
 
@@ -35,6 +44,7 @@ var flagSeverity = cli.StringFlag{
 
 var flagUser = cli.StringFlag{
 	Name:        "user, u",
+	Value:       "unknown",
 	Usage:       "user that triggered the change event.",
 	Destination: &event.User,
 }
