@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/danielpalstra/jsyk.svg?branch=master)](https://travis-ci.org/danielpalstra/jsyk)
+
 # JSYK - Just So You Know
 JSYK is a tiny, simple application that sends "informative change" events to elasticsearch by using the commandline. Inspired by the prezi changelog application https://github.com/prezi/changelog
 
