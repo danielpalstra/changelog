@@ -11,9 +11,9 @@ import (
 func main() {
 
 	app := cli.NewApp()
-	app.Name = "changelog"
+	app.Name = "jsyk"
 	app.Version = "0.1.0"
-	app.Usage = "changelog [action] [arguments]"
+	app.Usage = "jsyk [action] [arguments]"
 	app.Author = "Daniel Palstra"
 	app.Email = "daniel@danielpalstra.com"
 	app.Commands = Commands

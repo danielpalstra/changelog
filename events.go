@@ -29,12 +29,12 @@ type Event struct {
 
 func getIndex() (i string) {
 	// TODO make index configurable
-	i = strings.Join([]string{"changelog-", time.Now().Format("2006.01.02")}, "")
+	i = strings.Join([]string{"jsyk-", time.Now().Format("2006.01.02")}, "")
 	return
 }
 
 // TODO cleanup code
-// Method that sends a new changelog event
+// Method that sends a new jsyk event
 func changeEvent(url string, event Event) {
 
 	// Set timestamp for event
@@ -68,7 +68,7 @@ func changeEvent(url string, event Event) {
 		}
 	}
 
-	// Index a changelog event (using JSON serialization)
+	// Index a jsyk event (using JSON serialization)
 	put, err := client.Index().
 		Index(index).
 		Type("event").
@@ -78,6 +78,6 @@ func changeEvent(url string, event Event) {
 		// Handle error
 		panic(err)
 	}
-	fmt.Printf("Send changelog event %s to index %s \n", put.Id, put.Index)
+	fmt.Printf("Send jsyk event %s to index %s \n", put.Id, put.Index)
 
 }

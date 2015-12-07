@@ -15,11 +15,11 @@ var Commands = []cli.Command{
 	CommandAddChangeEvent,
 }
 
-// CommandAddChangeEvent - Command responsible for sending a change event to changelog.
+// CommandAddChangeEvent - Command responsible for sending a change event to jsyk.
 var CommandAddChangeEvent = cli.Command{
 	Name:        "add",
-	Usage:       "changelog add [options]",
-	Description: `Command to add a new change (event) to changelog. See help for the available parameters`,
+	Usage:       "jsyk add [options]",
+	Description: `Command to add a new change (event) to jsyk. See help for the available parameters`,
 	Action:      addChangeEvent,
 	Flags:       Flags,
 }

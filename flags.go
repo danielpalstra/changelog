@@ -1,5 +1,5 @@
 /*
-	This file contains the available CLI flags for adding change events to changelog
+	This file contains the available CLI flags for adding change events to jsyk
 */
 
 package main
